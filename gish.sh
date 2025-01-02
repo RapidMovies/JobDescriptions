@@ -1,4 +1,3 @@
-alias create="python3 createsite.py"
 git pull
 git add .
 git commit -m "-"
