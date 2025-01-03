@@ -47,4 +47,3 @@ row_to_add = [
 row_to_add = ",".join(f'"{e}"' if "," in e else e for e in row_to_add)
 with open("job_application_tracker.csv", "a") as f:
     f.write(row_to_add + "\n")
-
