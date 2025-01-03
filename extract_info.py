@@ -31,20 +31,20 @@ employees = _match.group(2)
 li_employees = _match.group(3)
 now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+ret_site = create_site(site, position, str(desc))
 row_to_add = [
     company,
     industry,
     employees,
     li_employees,
-    position,
+    f'=HYPERLINK(""{ret_site}"",""{position}"")',
     reqid,
     location,
     now,
     "",
     "pending",
 ]
-row_to_add = ",".join(f'"{e}"' for e in row_to_add)
+row_to_add = ",".join(f'"{e}"' if "," in e else e for e in row_to_add)
 with open("job_application_tracker.csv", "a") as f:
     f.write(row_to_add + "\n")
 
-create_site(site, position, str(desc))

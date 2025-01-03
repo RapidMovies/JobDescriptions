@@ -3,9 +3,12 @@ import os
 def create_site(site, title, target):
     ## ADD NEW SITE ##]
     assert '/' in site, f'"/" does not appear in "{site}"'
+    # unallowed = {'<', '>', ':', '"', '/', '\\', '|', '?', '*'}
+    # for c in unallowed:
+    #     site = site.replace(c, f"(c{ord(c)})")
     site = site[site.index('//')+2:]
     site = "site/" + site
-    print('https://rapidmovies.github.io/JobDescriptions/' + site)
+    ret_site = 'https://rapidmovies.github.io/JobDescriptions/' + site
 
     try:
         os.makedirs(site)
@@ -41,3 +44,5 @@ def create_site(site, title, target):
 
     # with open('index.html', 'w') as f:
     #     f.write(html)
+
+    return ret_site
