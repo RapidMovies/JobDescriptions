@@ -3,9 +3,9 @@ import os
 def create_site(site, title, target):
     ## ADD NEW SITE ##]
     assert '/' in site, f'"/" does not appear in "{site}"'
-    # unallowed = {'<', '>', ':', '"', '/', '\\', '|', '?', '*'}
-    # for c in unallowed:
-    #     site = site.replace(c, f"(c{ord(c)})")
+    unallowed = {'<', '>', ':', '"', '\\', '|', '?', '*'}
+    for c in unallowed:
+        site = site.replace(c, f"(c{ord(c)})")
     site = site[site.index('//')+2:]
     site = "site/" + site
     ret_site = 'https://rapidmovies.github.io/JobDescriptions/' + site
