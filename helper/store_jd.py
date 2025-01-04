@@ -1,22 +1,24 @@
 import os
 
-def create_site(site, title, target):
-    ## ADD NEW SITE ##]
-    assert '/' in site, f'"/" does not appear in "{site}"'
-    unallowed = {'<', '>', ':', '"', '\\', '|', '?', '*'}
+
+def store_jd(url: str, position: str, desc: str):
+    print(end=" Job Description... ")
+    assert "/" in url, f'"/" does not appear in "{url}"'
+    unallowed = {"<", ">", ":", '"', "\\", "|", "?", "*"}
     for c in unallowed:
-        site = site.replace(c, f"(c{ord(c)})")
-    site = site[site.index('//')+2:]
-    site = "site/" + site
-    ret_site = 'https://rapidmovies.github.io/JobDescriptions/' + site
+        url = url.replace(c, f"(c{ord(c)})")
+    url = url[url.index("//") + 2 :]
+    url = "site/" + url
+    ret_site = "https://rapidmovies.github.io/JobDescriptions/" + url
 
     try:
-        os.makedirs(site)
+        os.makedirs(url)
     except FileExistsError:
         pass
-    target = f"<!-- {title} -->\n" + target
-    with open(f'{site}/index.html', 'w') as f:
-        f.write(target)
+
+    desc = f"<!-- {position} -->\n" + desc
+    with open(f"{url}/index.html", "w") as f:
+        f.write(desc)
 
     ## UPDATE INDEX.HTML ##
 
@@ -45,4 +47,5 @@ def create_site(site, title, target):
     # with open('index.html', 'w') as f:
     #     f.write(html)
 
+    print("DONE")
     return ret_site
