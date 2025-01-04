@@ -2,7 +2,7 @@ import os
 
 
 def store_jd(url: str, position: str, desc: str):
-    print(end=" Job Description... ")
+    print(end="Storing Job Description... ")
     assert "/" in url, f'"/" does not appear in "{url}"'
     unallowed = {"<", ">", ":", '"', "\\", "|", "?", "*"}
     for c in unallowed:
