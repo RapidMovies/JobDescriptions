@@ -12,7 +12,7 @@ def update_spreadsheet(row_to_add, spreadsheet_id, service_key_path):
 
     # Append the new row
     body = {"values": [row_to_add]}  # 'values' should be a list of lists
-    rsp = (
+    udt = (
         service.spreadsheets()
         .values()
         .append(
@@ -23,5 +23,9 @@ def update_spreadsheet(row_to_add, spreadsheet_id, service_key_path):
             body=body,
         )
         .execute()
-    )
-    print(f"{rsp['updatedRows']} row(s), {rsp['updatedColumns']} column(s), {rsp['updatedCells']} cell(s) updated within {rsp['updatedRange']}")
+    )["updates"]
+    try:
+        print(f"{udt['updatedRows']} row(s), {udt['updatedColumns']} column(s), {udt['updatedCells']} cell(s) updated within {udt['updatedRange']}")
+    except:
+        print(udt)
+        print(f"{udt['updatedRows']} row(s), {udt['updatedColumns']} column(s), {udt['updatedCells']} cell(s) updated within {udt['updatedRange']}")
